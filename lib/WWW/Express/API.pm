@@ -54,6 +54,16 @@ has near => (
  isa => 'Num'
 );
 
+has areas => (
+  is => 'rw',
+  isa => 'ArrayRef'
+);
+
+has prefectures => (
+  is => 'rw',
+  isa => 'ArrayRef'
+);
+
 sub retrieve_url{
  my $self = shift;
  my $type = $self->get;
@@ -76,7 +86,7 @@ sub get_areas{
   my $url = URI->new($baseURL);
   $url->query_form(method => $get);
   my $areas = WWW::Express::API::Common->call($url);
-  return $areas;
+  push @{$self->areas},$areas->{response}->{area};
 }
 
 sub get_prefectures{
@@ -85,7 +95,7 @@ sub get_prefectures{
   my $url = URI->new($baseURL);
   $url->query_form(method => $get);
   my $prefectures = WWW::Express::API::Common->call($url);
-  return $prefectures;
+  push @{$self->prefectures},$prefectures->{response}->{prefecture};
 }
 
 1;
