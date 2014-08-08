@@ -1,5 +1,6 @@
 package WWW::Express::API;
 use WWW::Express::API::Line;
+use WWW::Express::API::Station;
 use 5.008005;
 use strict;
 use warnings;
@@ -13,6 +14,16 @@ has area => (
 );
 
 has pref => (
+  is => 'rw',
+ isa => 'Str'
+);
+
+has name => (
+  is => 'rw',
+ isa => 'Str'
+);
+
+has line => (
   is => 'rw',
  isa => 'Str'
 );
@@ -37,12 +48,22 @@ has format => (
   isa => 'Str'
 );
 
+has near => (
+  is => 'rw',
+ isa => 'Num'
+);
+
 sub retrieve_url{
  my $self = shift;
  my $type = $self->get;
+ my $near = $self->near;
  if($type eq 'getLines'){
-   my $url = WWW::Express::API::Line->call($self->area,$self->pref,$self->format);
+   my $url = WWW::Express::API::Line->call($self->near,$self->area,$self->pref,$self->format);
    return $url;
+ }elsif($type eq 'getStations' and $near == 1){
+   my $url = WWW::Express::API::Station->call($self->near,$self->format,$self->x,$self->y);
+ }elsif($type eq 'getStations' and $near == 0){
+   my $url = WWW::Express::API::Station->call($self->near,$self->format,$self->line,$self->name);
  }
 }
 
