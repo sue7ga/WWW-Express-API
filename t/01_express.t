@@ -20,7 +20,7 @@ is($express->format,'json');
 
 subtest 'getStations by line or name' => sub{
 
-my $station = new WWW::Express::API(name => '橋本',get => 'getStations',format => 'json',near => 0);
+my $station = new WWW::Express::API(line => 'JR山手線',name => '新宿',get => 'getStations',format => 'json',near => 0);
 
 is($station->near,0);
 is($station->name,'新宿');
@@ -79,5 +79,24 @@ subtest 'getStations by x or y' =>  sub {
 
 };
 
+subtest 'getPrefectures' => sub{
+
+ my $express = new WWW::Express::API(get => 'getPrefectures');
+ is($express->get,'getPrefectures');
+ 
+ my $prefectures = $express->get_prefectures;
+
+ $prefectures->{response}->{prefecture};
+};
+
+subtest 'getAreas' => sub{
+
+  my $express = new WWW::Express::API(get => 'getAreas');
+  is($express->get,'getAreas');
+  
+  my $areas = $express->get_areas;
+
+  $areas->{response}->{area};
+};
 
 done_testing();

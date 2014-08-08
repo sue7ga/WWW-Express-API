@@ -19,10 +19,12 @@ sub call{
   if($near){
    $url->query_form(method => 'getStations',x => $x,y => $y);
   }else{
-   $url->query_form(method => 'getStations',line => $line,name => $name);
+   $url->query_form(method => 'getStations',line => $line);
   }
+  #return $url;
   return WWW::Express::API::Common->call($url);
 }
 
-
 1;
+
+

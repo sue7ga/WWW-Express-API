@@ -5,6 +5,7 @@ use 5.008005;
 use strict;
 use warnings;
 use Mouse;
+use URI;
 
 our $VERSION = "0.01";
 
@@ -67,7 +68,29 @@ sub retrieve_url{
  }
 }
 
+our $baseURL = WWW::Express::API::Common::jsonUrl;
+
+sub get_areas{
+  my $self = shift;
+  my $get = $self->get;
+  my $url = URI->new($baseURL);
+  $url->query_form(method => $get);
+  my $areas = WWW::Express::API::Common->call($url);
+  return $areas;
+}
+
+sub get_prefectures{
+  my $self = shift;
+  my $get = $self->get;
+  my $url = URI->new($baseURL);
+  $url->query_form(method => $get);
+  my $prefectures = WWW::Express::API::Common->call($url);
+  return $prefectures;
+}
+
 1;
+
+
 
 __END__
 
