@@ -3,6 +3,7 @@ use WWW::Express::API::Line;
 use WWW::Express::API::Station;
 use 5.008005;
 use strict;
+use utf8;
 use warnings;
 use Mouse;
 use URI;
@@ -73,8 +74,10 @@ sub retrieve_url{
    return $url;
  }elsif($type eq 'getStations' and $near == 1){
    my $url = WWW::Express::API::Station->call($self->near,$self->format,$self->x,$self->y);
+   return $url;
  }elsif($type eq 'getStations' and $near == 0){
    my $url = WWW::Express::API::Station->call($self->near,$self->format,$self->line,$self->name);
+   return $url;
  }
 }
 
@@ -99,7 +102,6 @@ sub get_prefectures{
 }
 
 1;
-
 
 
 __END__

@@ -1,20 +1,21 @@
 use strict;
+use warnings;
 use Test::More;
 use Encode;
-
+use utf8;
 use WWW::Express::API;
 use Data::Dumper;
 
 subtest 'getlines' => sub{
 
-my $express = new WWW::Express::API(area => '関東',pref => '神奈川県',get => 'getLines',format => 'json');
+my $express = new WWW::Express::API(area => '関東',pref => '東京都',get => 'getLines',format => 'json');
 
 is($express->area,'関東');
 is($express->pref,'神奈川県');
 is($express->get,'getLines');
 is($express->format,'json');
 
-#print Encode::encode_utf8(${$express->retrieve_url->{response}->{line}}[1]),"\n";
+print Dumper $express->retrieve_url;
 
 };
 
@@ -27,7 +28,7 @@ is($station->name,'新宿');
 is($station->get,'getStations');
 is($station->format,'json');
  
-print Dumper $station->retrieve_url;
+#print Dumper $station->retrieve_url;
 
 };
 

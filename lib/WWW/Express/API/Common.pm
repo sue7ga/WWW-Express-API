@@ -1,5 +1,7 @@
 package WWW::Express::API::Common;
-
+use strict;
+use warnings;
+use utf8;
 use LWP::UserAgent;
 use JSON;
 
@@ -19,3 +21,7 @@ sub ua{
 }
 
 1;
+
+
+
+
