@@ -8,14 +8,14 @@ use Data::Dumper;
 
 subtest 'getlines' => sub{
 
-my $express = new WWW::Express::API(area => '関東',pref => '東京都',get => 'getLines',format => 'json');
+  my $express = new WWW::Express::API(area => '関東',pref => '東京都',get => 'getLines',format => 'json');
 
-is($express->area,'関東');
-is($express->pref,'神奈川県');
-is($express->get,'getLines');
-is($express->format,'json');
+  is($express->area,'関東');
+  is($express->pref,'神奈川県');
+  is($express->get,'getLines');
+  is($express->format,'json');
 
-print Dumper $express->retrieve_url;
+  print Dumper $express->retrieve_url;
 
 };
 
@@ -81,23 +81,22 @@ subtest 'getStations by x or y' =>  sub {
 };
 
 subtest 'getPrefectures' => sub{
-
  my $express = new WWW::Express::API(get => 'getPrefectures');
  is($express->get,'getPrefectures');
-
+ $express->get_prefectures;
+ print Dumper $express->prefectures;
 };
 
 subtest 'getAreas' => sub{
-
   my $express = new WWW::Express::API(get => 'getAreas');
   is($express->get,'getAreas');
-  
 };
 
 subtest 'areas' => sub{
   my $express = new WWW::Express::API(get => 'getAreas');
   $express->get_areas;
-  return $express->areas;
+  print Dumper $express->areas;
 };
+
 
 done_testing();

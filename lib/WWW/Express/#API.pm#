@@ -57,14 +57,12 @@ has near => (
 
 has areas => (
   is => 'rw',
-  isa => 'ArrayRef',
-  default => sub{[]}
+  isa => 'ArrayRef'
 );
 
 has prefectures => (
   is => 'rw',
-  isa => 'ArrayRef',
-  default => sub{[]}
+  isa => 'ArrayRef'
 );
 
 sub retrieve_url{
@@ -104,6 +102,7 @@ sub get_prefectures{
 }
 
 1;
+
 
 __END__
 
