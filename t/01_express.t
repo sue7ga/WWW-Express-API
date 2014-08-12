@@ -53,16 +53,11 @@ subtest 'getPrefectures' => sub{
  print Dumper $express->prefectures;
 };
 
-subtest 'getAreas' => sub{
+subtest 'getareas' => sub{
   my $express = new WWW::Express::API(get => 'getAreas');
   is($express->get,'getAreas');
-};
-
-subtest 'areas' => sub{
-  my $express = new WWW::Express::API(get => 'getAreas');
   $express->get_areas;
   print Dumper $express->areas;
 };
-
 
 done_testing();

@@ -42,7 +42,8 @@ has y => (
 
 has get => (
   is => 'rw',
-  isa => 'Str'
+  isa => 'Str',
+  required => 1
 );
 
 has format => (
@@ -106,7 +107,6 @@ sub get_prefectures{
 }
 
 1;
-
 
 __END__
 
