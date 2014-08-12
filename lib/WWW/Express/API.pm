@@ -67,12 +67,13 @@ has prefectures => (
   default => sub{[]}
 );
 
+# API get
 sub retrieve_url{
  my $self = shift;
  my $type = $self->get;
  my $near = $self->near;
  if($type eq 'getLines'){
-   my $url = WWW::Express::API::Line->call($self->near,$self->area,$self->pref,$self->format);
+   my $url = WWW::Express::API::Line->call($self->area,$self->pref,$self->format);
    return $url;
  }elsif($type eq 'getStations' and $near == 1){
    my $url = WWW::Express::API::Station->call($self->near,$self->format,$self->x,$self->y);
@@ -83,6 +84,7 @@ sub retrieve_url{
  }
 }
 
+# pref areas list get
 our $baseURL = WWW::Express::API::Common::jsonUrl;
 
 sub get_areas{
@@ -104,6 +106,7 @@ sub get_prefectures{
 }
 
 1;
+
 
 __END__
 

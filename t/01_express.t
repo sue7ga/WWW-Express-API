@@ -11,7 +11,7 @@ subtest 'getlines' => sub{
   my $express = new WWW::Express::API(area => '関東',pref => '東京都',get => 'getLines',format => 'json');
 
   is($express->area,'関東');
-  is($express->pref,'神奈川県');
+  is($express->pref,'東京都');
   is($express->get,'getLines');
   is($express->format,'json');
 
@@ -28,7 +28,7 @@ is($station->name,'新宿');
 is($station->get,'getStations');
 is($station->format,'json');
  
-#print Dumper $station->retrieve_url;
+print Dumper $station->retrieve_url;
 
 };
 
@@ -42,41 +42,7 @@ subtest 'getStations by x or y' =>  sub {
   is($station->get,'getStations');
   is($station->format,'json');
  
-  is_deeply($station->retrieve_url->{response}->{station},[
-                                         {
-                                           'next' => "\x{9ed2}\x{7530}\x{5e84}",
-                                           'distance' => '310m',
-                                           'prev' => "\x{6bd4}\x{5ef6}",
-                                           'name' => "\x{65e5}\x{672c}\x{3078}\x{305d}\x{516c}\x{5712}",
-                                           'postal' => '6770039',
-                                           'x' => '134.997666',
-                                           'y' => '35.002054',
-                                           'prefecture' => "\x{5175}\x{5eab}\x{770c}",
-                                           'line' => "JR\x{52a0}\x{53e4}\x{5ddd}\x{7dda}"
-                                         },
-                                         {
-                                           'next' => "\x{65e5}\x{672c}\x{3078}\x{305d}\x{516c}\x{5712}",
-                                           'distance' => '1310m',
-                                           'prev' => "\x{65b0}\x{897f}\x{8107}",
-                                           'name' => "\x{6bd4}\x{5ef6}",
-                                           'postal' => '6770033',
-                                           'x' => '134.99574',
-                                           'y' => '34.988777',
-                                           'prefecture' => "\x{5175}\x{5eab}\x{770c}",
-                                           'line' => "JR\x{52a0}\x{53e4}\x{5ddd}\x{7dda}"
-                                         },
-                                         {
-                                           'next' => "\x{672c}\x{9ed2}\x{7530}",
-                                           'distance' => '2620m',
-                                           'prev' => "\x{65e5}\x{672c}\x{3078}\x{305d}\x{516c}\x{5712}",
-                                           'name' => "\x{9ed2}\x{7530}\x{5e84}",
-                                           'postal' => '6790313',
-                                           'x' => '134.992545',
-                                           'y' => '35.02274',
-                                           'prefecture' => "\x{5175}\x{5eab}\x{770c}",
-                                           'line' => "JR\x{52a0}\x{53e4}\x{5ddd}\x{7dda}"
-                                         }
-                                       ]);
+ print Dumper $station->retrieve_url;
 
 };
 
