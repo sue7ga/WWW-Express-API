@@ -8,7 +8,7 @@ use Data::Dumper;
 
 subtest 'getlines' => sub{
 
-  my $express = new WWW::Express::API(area => '関東',pref => '東京都',get => 'getLines',format => 'json');
+  my $express = new WWW::Express::API(area => '関東',get => 'getLines',format => 'json');
 
   is($express->area,'関東');
   is($express->pref,'東京都');
@@ -21,10 +21,11 @@ subtest 'getlines' => sub{
 
 subtest 'getStations by line or name' => sub{
 
-my $station = new WWW::Express::API(line => 'JR山手線',name => '新宿',get => 'getStations',format => 'json',near => 0);
+my $station = new WWW::Express::API(line => 'JR山手線',get => 'getStations',format => 'json',near => 0);
 
 is($station->near,0);
 is($station->name,'新宿');
+is($station->line,'JR山手線');
 is($station->get,'getStations');
 is($station->format,'json');
  
@@ -35,7 +36,6 @@ print Dumper $station->retrieve_url;
 subtest 'getStations by x or y' =>  sub {
   
   my $station = new WWW::Express::API(x => 135.0,y => 35.0,get => 'getStations',format => 'json',near => 1);
- 
   is($station->near,1);
   is($station->x,135.0);
   is($station->y,35.0);
